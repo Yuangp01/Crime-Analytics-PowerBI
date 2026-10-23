@@ -1,96 +1,619 @@
-# Los Angeles Crime Analytics Dashboard
 
-> A production-grade analytics platform transforming 5+ years of LAPD crime data into actionable intelligence for law enforcement operations and public safety decision-making.
+<h1>LOS ANGELES CRIME ANALYTICS DASHBOARD</h1>
 
-[![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
-[![Power Query](https://img.shields.io/badge/Power%20Query-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)](https://docs.microsoft.com/en-us/powerquery-m/)
-[![DAX](https://img.shields.io/badge/DAX-FFB900?style=for-the-badge&logo=microsoft&logoColor=white)](https://docs.microsoft.com/en-us/dax/)
-[![Data Modeling](https://img.shields.io/badge/Data%20Modeling-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://docs.microsoft.com/en-us/analysis-services/tabular-models/tabular-models-ssas)
-[![CSV](https://img.shields.io/badge/Data%20Format-4CAF50?style=for-the-badge&logo=files&logoColor=white)](https://en.wikipedia.org/wiki/Comma-separated_values)
-[![Microsoft Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)](https://www.microsoft.com/en-us/microsoft-365/excel)
+<blockquote>
+  An interactive Power BI investigation and executive reporting
+  solution that transforms historical LAPD incident records into
+  clearer geographic, temporal, and case-level insights.
+  Designed as a data analytics portfolio project to support
+  evidence-informed public safety analysis.
+</blockquote>
 
----
+<p>
+  <a href="https://powerbi.microsoft.com/">
+    <img src="https://img.shields.io/badge/POWER%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI">
+  </a>
+  <a href="https://learn.microsoft.com/en-us/power-query/">
+    <img src="https://img.shields.io/badge/POWER%20QUERY-217346?style=for-the-badge&logoColor=white" alt="Power Query">
+  </a>
+  <a href="https://learn.microsoft.com/en-us/dax/">
+    <img src="https://img.shields.io/badge/DAX-FFB900?style=for-the-badge&logoColor=black" alt="DAX">
+  </a>
+  <a href="https://learn.microsoft.com/en-us/power-bi/guidance/star-schema">
+    <img src="https://img.shields.io/badge/DATA%20MODELING-0078D4?style=for-the-badge&logoColor=white" alt="Data Modeling">
+  </a>
+  <a href="https://www.microsoft.com/microsoft-365/excel">
+    <img src="https://img.shields.io/badge/EXCEL-217346?style=for-the-badge&logoColor=white" alt="Excel">
+  </a>
+  <img src="https://img.shields.io/badge/GEOSPATIAL%20ANALYSIS-654FA2?style=for-the-badge&logoColor=white" alt="Geospatial Analysis">
+</p>
 
-## 🎯 Business Context
+<p>
+  <a href="#project-at-a-glance">At a Glance</a> &nbsp;•&nbsp;
+  <a href="#business-context">Business Context</a> &nbsp;•&nbsp;
+  <a href="#dashboard-gallery">Dashboards</a> &nbsp;•&nbsp;
+  <a href="#technical-approach">Technical Approach</a> &nbsp;•&nbsp;
+  <a href="#key-findings">Findings</a> &nbsp;•&nbsp;
+  <a href="#recommendations">Recommendations</a>
+</p>
 
-Law enforcement agencies generate massive volumes of incident data, yet often lack real-time visibility into crime trends, geographic hotspots, and clearance rates. Operational commanders need fast access to intelligence that informs patrol deployment, investigative resource allocation, and public safety strategy — but rely on static reports and fragmented spreadsheets.
+<hr>
 
-**This project demonstrates a production-grade analytics solution** that bridges raw LAPD data and actionable law enforcement intelligence.
+<h2 id="project-at-a-glance">📌 Project at a Glance</h2>
 
----
-## 🖼 Dashboard preview 
+<table>
+  <tr>
+    <th align="center">800K+</th>
+    <th align="center">2020–2024</th>
+    <th align="center">21+</th>
+    <th align="center">2</th>
+  </tr>
+  <tr>
+    <td align="center">Reported crime records</td>
+    <td align="center">Analysis period</td>
+    <td align="center">LAPD reporting divisions</td>
+    <td align="center">Power BI report views</td>
+  </tr>
+</table>
 
-<div style="display: flex; gap: 20px; justify-content: center;">
-  <img src="images/crime.png" alt="Crime Analytics Dashboard" width="48%" style="border-radius: 8px;">
-  <img src="images/Case_Investigation.png" alt="Case Investigation Dashboard" width="48%" style="border-radius: 8px;">
+<p>
+  <strong>Primary audience:</strong>
+  Crime analysts, investigative teams, operational leadership,
+  and public safety stakeholders.
+</p>
 
----
+<p>
+  <strong>Data source:</strong>
+  Publicly available incident-level records from the
+  <a href="https://data.lacity.org/">Los Angeles Open Data Portal</a>.
+</p>
 
-</div>
+<p>
+  <strong>Project scope:</strong>
+  Historical analysis and investigative exploration;
+  not a live LAPD operational deployment.
+</p>
 
-### Key Stakeholders & Questions
+<hr>
 
-| Stakeholder | Operational Question | Critical Metric |
-|---|---|---|
-| **Police Commander** | Where should we deploy patrol resources? | Crime hotspots, incident density by division |
-| **Investigations Bureau** | Which cases remain open and need follow-up? | Open investigation count, clearance rate by crime type |
-| **Crime Analysis Unit** | What crime patterns are emerging this month? | Crime trend YoY, seasonal patterns, weekly distribution |
-| **Public Safety Leadership** | Are we reducing crime in target areas? | Total crime volume, crime category breakdown, arrest rate |
-| **Community Relations** | Which areas have the highest crime impact? | Incidents by reporting area, crime severity distribution |
+<h2 id="business-context">🎯 Business Context</h2>
 
----
+<p>
+  Crime incident data is valuable only when analysts can
+  translate thousands of individual records into meaningful patterns.
+  Static summaries can make it difficult to connect
+  <strong>where incidents occur</strong>,
+  <strong>how activity changes over time</strong>,
+  and <strong>which related cases warrant closer review</strong>.
+</p>
 
-## 📊 Project Overview
+<p>
+  <strong>Analytical challenge:</strong>
+  Build a unified, self-service reporting experience that moves
+  from citywide monitoring to case-level investigation without
+  requiring users to manually reconcile separate maps,
+  spreadsheets, and incident lists.
+</p>
 
-This end-to-end analytics project transforms **5+ years of crime data (2020–2024)** from the Los Angeles Open Data Portal into a **data-driven intelligence platform** that supports law enforcement decision-making.
+<h3>Stakeholders &amp; Analytical Questions</h3>
 
-### Analytical Workflow
+<table>
+  <tr>
+    <th>Stakeholder</th>
+    <th>Decision-Support Question</th>
+    <th>Relevant Analysis</th>
+  </tr>
+  <tr>
+    <td><strong>Operational Leadership</strong></td>
+    <td>Which divisions have the greatest reported incident volume?</td>
+    <td>Division comparisons and geographic concentrations</td>
+  </tr>
+  <tr>
+    <td><strong>Crime Analysis Teams</strong></td>
+    <td>How do incident patterns vary by year, month, and offense?</td>
+    <td>Trend analysis, calendar patterns, offense categories</td>
+  </tr>
+  <tr>
+    <td><strong>Investigators</strong></td>
+    <td>What is known about a selected case and what incidents are geographically nearby?</td>
+    <td>Case-number lookup, incident details, proximity analysis</td>
+  </tr>
+  <tr>
+    <td><strong>Public Safety Stakeholders</strong></td>
+    <td>How does reported activity differ across locations and categories?</td>
+    <td>Map, division, and crime-category breakdowns</td>
+  </tr>
+</table>
 
-## 🏗️ Technical Architecture & Data Pipeline
+<hr>
 
-```mermaid
-flowchart TD
-    A[(Raw LAPD Crime Data<br/>2020-2024)] -->|Power Query ETL| B(Data Extraction & Transformation)
-    B -->|Star Schema| C{Data Modeling}
-    C -->|DAX| D[Business Logic & KPIs]
-    D -->|Data Visualization| E[[Law Enforcement Intelligence Platform]]
+<h2 id="dashboard-gallery">🖼️ Dashboard Gallery</h2>
 
-    style A fill:#161b22,stroke:#58a6ff,stroke-width:2px,color:#fff
-    style B fill:#161b22,stroke:#217346,stroke-width:2px,color:#fff
-    style C fill:#161b22,stroke:#d29922,stroke-width:2px,color:#fff
-    style D fill:#161b22,stroke:#8957e5,stroke-width:2px,color:#fff
-    style E fill:#161b22,stroke:#039014,stroke-width:2px,color:#fff
-```
+<p>
+  Click either screenshot to view it at full resolution.
+</p>
 
-📊 5. Law Enforcement Intelligence Platform (Dashboards)
+<table>
+  <tr>
+    <th align="center">01 — Executive Crime Overview</th>
+    <th align="center">02 — Interactive Case Investigation</th>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <a href="./images/crime.png">
+        <img
+          src="./images/crime.png"
+          alt="Crime analytics executive dashboard with division map, KPI cards, and temporal analysis"
+          width="100%">
+      </a>
+    </td>
+    <td width="50%" align="center">
+      <a href="./images/Case_Investigation.png">
+        <img
+          src="./images/Case_Investigation.png"
+          alt="Case investigation dashboard with case search, map, and nearby incidents"
+          width="100%">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Citywide crime distribution, headline metrics,
+      offense mix, and time patterns.
+    </td>
+    <td>
+      Case-level exploration, configurable proximity radius,
+      and geographically related incidents.
+    </td>
+  </tr>
+</table>
 
-**The Problem:** Police commanders couldn't see crime data in real-time. They had to wait days to get reports. This meant slower decisions and slower response.
+<details>
+  <summary><strong>🔎 Explore Page 1 — Executive Crime Overview</strong></summary>
+  <br>
+  <p>
+    The executive page supports a top-down analysis workflow:
+  </p>
+  <ol>
+    <li>
+      <strong>Locate concentrations:</strong>
+      Inspect the LAPD division map and compare reported incident counts.
+    </li>
+    <li>
+      <strong>Understand the mix:</strong>
+      Review person, property, and society-related groupings.
+    </li>
+    <li>
+      <strong>Find time patterns:</strong>
+      Examine year-over-year activity, monthly changes,
+      and the calendar heatmap.
+    </li>
+    <li>
+      <strong>Refine the analysis:</strong>
+      Use the report's available selections to narrow the view.
+    </li>
+  </ol>
+  <p>
+    <strong>Why it matters:</strong>
+    Provides context before analysts move to a specific location or case.
+  </p>
+</details>
 
-**The Solution:** Built an easy-to-use dashboard that shows crime data instantly so commanders can make decisions right away.
+<details>
+  <summary><strong>🧭 Explore Page 2 — Interactive Case Investigation</strong></summary>
+  <br>
+  <p>
+    The case-investigation page is organized around a repeatable workflow:
+  </p>
+  <ol>
+    <li>
+      <strong>Search:</strong>
+      Locate an incident using its case number.
+    </li>
+    <li>
+      <strong>Review:</strong>
+      Inspect the selected case's available details
+      and offense information.
+    </li>
+    <li>
+      <strong>Set proximity:</strong>
+      Choose a distance radius around the case location.
+    </li>
+    <li>
+      <strong>Explore:</strong>
+      Review nearby incidents on the map and in a linked detail table.
+    </li>
+  </ol>
+  <p>
+    <strong>Important:</strong>
+    Geographical proximity suggests candidates for review;
+    it does not establish that incidents are causally
+    or criminally linked.
+  </p>
+</details>
 
-**What You Can Do With It:**
-* **See Crime Hotspots Instantly** — The dashboard shows exactly where crime is happening on a map. Instead of spending 4+ hours manually checking reports, commanders see it in seconds.
-* **Spot Crime Trends** — Shows which months have more crime, which times are busiest. Helps predict when crime will spike instead of just reacting after it happens.
-* **Compare Police Divisions** — See which divisions are solving cases faster and which need help. Shares best practices across the department.
-* **Search Cases Fast** — Detectives can click a map, see trends, then find specific cases in seconds. No more hunting through 10 different spreadsheets.
+<hr>
 
-**The Real Impact:** What used to take 6 hours now takes 1 minute. Commanders can test new strategies and see results immediately instead of waiting days for reports.
+<h2 id="technical-approach">⚙️ Technical Approach</h2>
 
->
-> 
+<p>
+  The project follows an analytical workflow from raw
+  incident data through transformation, modeling,
+  calculation, and interactive reporting.
+</p>
 
----
+<table>
+  <tr>
+    <th align="center">01</th>
+    <th align="center">02</th>
+    <th align="center">03</th>
+    <th align="center">04</th>
+    <th align="center">05</th>
+  </tr>
+  <tr>
+    <td align="center"><strong>Source Data</strong></td>
+    <td align="center"><strong>Power Query</strong></td>
+    <td align="center"><strong>Data Model</strong></td>
+    <td align="center"><strong>DAX</strong></td>
+    <td align="center"><strong>Power BI</strong></td>
+  </tr>
+  <tr>
+    <td align="center">LAPD incident records</td>
+    <td align="center">Clean and shape</td>
+    <td align="center">Relate analytical tables</td>
+    <td align="center">Measures and calculations</td>
+    <td align="center">Explore and investigate</td>
+  </tr>
+</table>
 
-## 📈 The Analyst's ROI (Return on Investment)
+<details>
+  <summary><strong>🧹 01–02 | Data Preparation and Quality Controls</strong></summary>
+  <br>
+  <p>
+    Power Query supports the preparation of reporting-ready crime data,
+    including date and field typing, consistent descriptors,
+    and the handling of missing or incomplete values.
+  </p>
+  <p>
+    <strong>Key checks:</strong>
+    Valid incident identifiers, usable location fields,
+    duplicate handling, and date consistency.
+    Geographic visuals should not silently treat missing coordinates
+    as incidents that did not occur.
+  </p>
+</details>
 
-**The Operational Question:** *"Where should we deploy more patrol officers?"*
+<details>
+  <summary><strong>🗂️ 03 | Analytical Data Model</strong></summary>
+  <br>
+  <p>
+    The project presentation documents a
+    <strong>snowflake-style analytical model</strong>
+    supporting geographic, temporal, offense,
+    and incident-level analysis.
+  </p>
+  <p>
+    Relationships and grain should be checked so
+    aggregate crime counts do not double-count
+    multi-offense or repeated records.
+  </p>
+</details>
 
-| ❌ Legacy Process (Manual) | ✅ New Analytics Platform (Automated) |
-| :--- | :--- |
-| • Manual review of incident reports (`4 hours`) | • Open Power BI dashboard (`5 seconds`) |
-| • Count incidents by area in spreadsheet (`1 hour`) | • Filter by crime category & date range (`10 seconds`) |
-| • Create static pivot table report (`1 hour`) | • Drill-down to specific areas/offenses (`30 seconds`) |
-| **TOTAL: 6 Hours (Static Output)** | **TOTAL: < 1 Minute (Interactive & Ad-Hoc)** |
+<details>
+  <summary><strong>📐 04 | DAX and Analytical Measures</strong></summary>
+  <br>
+  <p>
+    DAX supports context-sensitive crime counts,
+    time comparisons, and other indicators used by report visuals.
+    A reliable measure should preserve its intended incident grain
+    under filtering.
+  </p>
+  <p>
+    The repository README summarizes measure categories;
+    it does not claim to reproduce every formula from
+    the original PBIX.
+  </p>
+</details>
 
-> ** Business Impact: 360x faster analysis.** Precinct commanders can now iterate on deployment strategies in real-time rather than waiting days for administrative reports.
+<details>
+  <summary><strong>🧩 05 | Dashboard Design and User Experience</strong></summary>
+  <br>
+  <p>
+    The experience separates executive monitoring from
+    case investigation. Maps, linked detail views,
+    trend visuals, and case-number search support
+    progressive exploration from overview to detail.
+  </p>
+  <p>
+    <strong>Design principle:</strong>
+    Provide supporting detail when relevant without
+    overloading the primary page.
+  </p>
+</details>
 
+<hr>
+
+<h2 id="key-findings">📈 Key Findings</h2>
+
+<p>
+  The following observations reflect the findings documented
+  in the project presentation for the historical analysis period.
+</p>
+
+<table>
+  <tr>
+    <th>Observation</th>
+    <th>Interpretation</th>
+  </tr>
+  <tr>
+    <td><strong>Peak Year: 2022</strong></td>
+    <td>
+      Reported crime volume reached its highest level
+      in the project's 2020–2024 comparison.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Highest-Volume Division: Central</strong></td>
+    <td>
+      The Central area recorded the largest count
+      among the divisions examined.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Largest Broad Grouping: Property Crime</strong></td>
+    <td>
+      Property-related incidents represented the
+      leading category in the project summary.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Day-of-Week Signal: Monday</strong></td>
+    <td>
+      Monday showed elevated activity across several
+      months in the documented analysis.
+    </td>
+  </tr>
+</table>
+
+<p>
+  <strong>Interpretation:</strong>
+  These are descriptive patterns, not evidence
+  that one factor caused the others.
+  Incident volume is also not the same as
+  population-adjusted crime risk, and findings
+  should be revalidated after changing
+  source records or filters.
+</p>
+
+<hr>
+
+<h2 id="recommendations">🎯 Recommendations and Decision Support</h2>
+
+<table>
+  <tr>
+    <th>Priority</th>
+    <th>Recommended Follow-up</th>
+    <th>Why It Matters</th>
+  </tr>
+  <tr>
+    <td>01</td>
+    <td>
+      <strong>Review high-volume divisions</strong>
+      with geographic and temporal context.
+    </td>
+    <td>
+      Focus further investigation where
+      recorded activity is concentrated.
+    </td>
+  </tr>
+  <tr>
+    <td>02</td>
+    <td>
+      <strong>Analyze property-related incidents</strong>
+      by offense type and reporting area.
+    </td>
+    <td>
+      Understand the components of
+      the largest broad category.
+    </td>
+  </tr>
+  <tr>
+    <td>03</td>
+    <td>
+      <strong>Compare patterns across equivalent time windows</strong>
+      before drawing operational conclusions.
+    </td>
+    <td>
+      Avoid treating seasonal or reporting
+      effects as confirmed changes in risk.
+    </td>
+  </tr>
+  <tr>
+    <td>04</td>
+    <td>
+      <strong>Use proximity results as leads for review</strong>,
+      then consult the underlying case details.
+    </td>
+    <td>
+      Make case exploration more systematic
+      without assuming incidents are related.
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<h2 id="workflow-value">⚡ Value of the Analytical Workflow</h2>
+
+<table>
+  <tr>
+    <th>Traditional Multi-Step Review</th>
+    <th>Interactive Analytical Workflow</th>
+  </tr>
+  <tr>
+    <td>
+      Open separate static reports and spreadsheets.
+    </td>
+    <td>
+      Begin with one consolidated Power BI overview.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Build manual summaries by division and offense.
+    </td>
+    <td>
+      Use linked visual comparisons and report filters.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Cross-reference incidents by location manually.
+    </td>
+    <td>
+      Explore a case and nearby incidents through
+      the investigation page.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Repeat analysis whenever the question changes.
+    </td>
+    <td>
+      Adjust the selection and review the
+      corresponding analytical view.
+    </td>
+  </tr>
+</table>
+
+<p>
+  <strong>Impact statement:</strong>
+  The project demonstrates a more streamlined
+  self-service workflow. No measured time savings,
+  operational deployment, or causal public safety
+  outcomes are claimed.
+</p>
+
+<hr>
+
+<h2 id="skills-demonstrated">🛠️ Skills Demonstrated</h2>
+
+<table>
+  <tr>
+    <th>Capability</th>
+    <th>Application in This Project</th>
+  </tr>
+  <tr>
+    <td><strong>Power Query</strong></td>
+    <td>Preparing historical incident data for reporting</td>
+  </tr>
+  <tr>
+    <td><strong>Data Modeling</strong></td>
+    <td>Organizing related data for geographic, time, offense, and case analysis</td>
+  </tr>
+  <tr>
+    <td><strong>DAX</strong></td>
+    <td>Building context-sensitive indicators and comparisons</td>
+  </tr>
+  <tr>
+    <td><strong>Power BI</strong></td>
+    <td>Developing multi-page interactive analytical dashboards</td>
+  </tr>
+  <tr>
+    <td><strong>Geospatial Analytics</strong></td>
+    <td>Mapping incident concentrations and nearby cases</td>
+  </tr>
+  <tr>
+    <td><strong>Analytical UX</strong></td>
+    <td>Connecting executive summaries to case-level exploration</td>
+  </tr>
+  <tr>
+    <td><strong>Data Storytelling</strong></td>
+    <td>Translating descriptive patterns into investigative questions</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2 id="limitations">🔍 Data Quality, Scope, and Responsible Interpretation</h2>
+
+<ul>
+  <li>
+    <strong>Historical snapshot:</strong>
+    The project covers 2020–2024 and should not be
+    described as a live crime-monitoring system.
+  </li>
+  <li>
+    <strong>Reported incidents:</strong>
+    The data reflects incidents recorded in the
+    source system, not necessarily every offense
+    that occurred.
+  </li>
+  <li>
+    <strong>Geographic coverage:</strong>
+    Missing or imperfect location records can
+    affect mapping and proximity results.
+  </li>
+  <li>
+    <strong>Metrics:</strong>
+    Incident counts, offense counts, clearances,
+    and population-adjusted rates are different
+    measures and should not be conflated.
+  </li>
+  <li>
+    <strong>Ethical use:</strong>
+    Geographic concentrations must not be used
+    alone to infer individual behavior or justify
+    enforcement decisions.
+  </li>
+  <li>
+    <strong>Project status:</strong>
+    A portfolio demonstration, not an official
+    LAPD product or a verified production deployment.
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="explore-the-project">📁 Explore the Project</h2>
+
+<p>
+  <a href="./images/">
+    <img src="https://img.shields.io/badge/VIEW-DASHBOARD%20IMAGES-0078D4?style=for-the-badge&logoColor=white" alt="View dashboard images">
+  </a>
+  <a href="./presentation/">
+    <img src="https://img.shields.io/badge/VIEW-PRESENTATION-68459B?style=for-the-badge&logoColor=white" alt="View project presentation">
+  </a>
+  <a href="https://yuangp01.github.io/">
+    <img src="https://img.shields.io/badge/EXPLORE-PORTFOLIO-238A66?style=for-the-badge&logoColor=white" alt="Visit portfolio">
+  </a>
+</p>
+
+<p>
+  Open the repository's available Power BI project files
+  in Power BI Desktop to explore working report interactions.
+  Screenshots on GitHub are static previews.
+</p>
+
+<hr>
+
+<h2 id="author">👤 Author</h2>
+
+<p>
+  <strong>Yuan Gonzalez</strong><br>
+  Data Analytics | Business Intelligence | Power BI<br>
+  <a href="https://github.com/Yuangp01">GitHub</a> &nbsp;•&nbsp;
+  <a href="https://yuangp01.github.io/">Portfolio</a> &nbsp;•&nbsp;
+  <a href="mailto:yuan.gonzalez001@gmail.com">Email</a>
+</p>
+
+<p align="center">
+  <strong>
+    From incident records to clearer questions,
+    better analysis, and more informed decisions.
+  </strong>
+</p>
+
+<p align="right">
+  <a href="#los-angeles-crime-analytics-dashboard">⬆ Back to top</a>
+</p>
